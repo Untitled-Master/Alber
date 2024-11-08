@@ -6,8 +6,9 @@ if (!window.SpeechRecognition) {
 } else {
     const recognition = new SpeechRecognition();
     recognition.lang = 'en-US'; // Set language
-    recognition.interimResults = true;
-    recognition.continuous = true;
+    recognition.continuous = false; // Disable continuous mode to only process final results
+    recognition.interimResults = false; // Disable interim results
+    recognition.maxAlternatives = 1; // Process only the first alternative (final result)
 
     const startButton = document.getElementById("start-btn");
     const stopButton = document.getElementById("stop-btn");
@@ -39,10 +40,7 @@ if (!window.SpeechRecognition) {
 
     // When speech recognition results are returned
     recognition.onresult = (event) => {
-        const transcript = Array.from(event.results)
-            .map(result => result[0]) // Get the first result from each set of results
-            .map(result => result.transcript) // Extract the transcript text
-            .join(''); // Join all results to form the full transcript
+        const transcript = event.results[0][0].transcript; // Get the final result from the first alternative
         transcriptDiv.textContent = transcript; // Update the display with the recognized speech
 
         // Check if the word "jover" is spoken
