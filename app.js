@@ -74,7 +74,7 @@ if (!window.SpeechRecognition) {
                 body: JSON.stringify({
                     messages: [
                         { role: "assistant", content: "Hello! How are you today?" },
-                        { role: "user", content: "Hello, my name is Ahmed Belmehnouf. I made you, and you are an AI bot called Albert" },
+                        { role: "user", content: "Hello, my name is Ahmed Belmehnouf. I made you, and you are an AI bot called Eva" },
                         { role: "assistant", content: "Hello, Ahmed! How are you today?" }
                     ],
                     prompt: text, // Using the speech-to-text output as the prompt
